@@ -246,8 +246,8 @@
                         </button>
                     </div>
 
-                    <!-- 4. กล่องเตือนกรณีลืมโน๊ตสลิป (แยกออกมาใหม่) -->
-                    <div class="relative bg-[#B3E5FC]/60 rounded-[20px] p-3.5 border-2 border-dashed border-[#81D4FA] shadow-sm flex items-center justify-between gap-3 cursor-pointer hover:bg-[#B3E5FC]/80 transition-colors" onclick="copyText('1', this, 'forget-note', 'คัดลอกยอดโอนเพิ่ม 1 บาทแล้ว')">
+                    <!-- 4. กล่องเตือนกรณีลืมโน๊ตสลิป (นำปุ่มคัดลอกและฟังก์ชันคลิกออกแล้ว) -->
+                    <div class="relative bg-[#B3E5FC]/60 rounded-[20px] p-3.5 border-2 border-dashed border-[#81D4FA] shadow-sm flex items-center justify-between gap-3">
                         <div class="flex items-start gap-2.5">
                             <div class="bg-[#1A1F8B] p-1.5 rounded-full text-white flex-shrink-0 mt-0.5 shadow-sm">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 text-[#81D4FA]">
@@ -262,10 +262,6 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="forget-note-btn bg-white text-[#1A1F8B] hover:bg-white/80 text-[11px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1 shrink-0 border border-[#81D4FA] transition-colors pointer-events-none shadow-sm">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-                            คัดลอก 1฿
-                        </button>
                     </div>
 
                     <!-- 5. กล่องเตือน +6 บาท Wallet -->
@@ -345,30 +341,31 @@
                 let buttonSelector = '.kbank-btn';
                 if (type === 'true') buttonSelector = '.true-btn';
                 if (type === 'note') buttonSelector = '.note-btn';
-                if (type === 'forget-note') buttonSelector = '.forget-note-btn';
 
                 const buttonElement = containerElement.querySelector(buttonSelector);
-                const originalHtml = buttonElement.innerHTML;
-                
-                buttonElement.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3.5 h-3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
-                    สำเร็จ
-                `;
-                
-                if (type === 'note' || type === 'forget-note') {
-                    buttonElement.classList.replace('bg-white', 'bg-[#81D4FA]');
-                } else {
-                    buttonElement.classList.replace('bg-white', 'bg-white/50');
-                }
-                
-                setTimeout(() => {
-                    buttonElement.innerHTML = originalHtml;
-                    if (type === 'note' || type === 'forget-note') {
-                        buttonElement.classList.replace('bg-[#81D4FA]', 'bg-white');
+                if (buttonElement) {
+                    const originalHtml = buttonElement.innerHTML;
+                    
+                    buttonElement.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3.5 h-3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                        สำเร็จ
+                    `;
+                    
+                    if (type === 'note') {
+                        buttonElement.classList.replace('bg-white', 'bg-[#81D4FA]');
                     } else {
-                        buttonElement.classList.replace('bg-white/50', 'bg-white');
+                        buttonElement.classList.replace('bg-white', 'bg-white/50');
                     }
-                }, 2000);
+                    
+                    setTimeout(() => {
+                        buttonElement.innerHTML = originalHtml;
+                        if (type === 'note') {
+                            buttonElement.classList.replace('bg-[#81D4FA]', 'bg-white');
+                        } else {
+                            buttonElement.classList.replace('bg-white/50', 'bg-white');
+                        }
+                    }, 2000);
+                }
 
             } catch (err) {
                 console.error('ไม่สามารถคัดลอกได้:', err);
