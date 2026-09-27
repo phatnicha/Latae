@@ -185,7 +185,7 @@
                 <!-- โซนบัญชีธนาคาร + กล่องเตือนต่างๆ -->
                 <div class="space-y-4">
                     
-                    <!-- 1. บัตรกสิกรไทย (ใช้สีชมพูตามสไตล์ภาพ K-Plus) -->
+                    <!-- 1. บัตรกสิกรไทย -->
                     <div class="virtual-card relative bg-[#FFCBE7] rounded-[24px] p-5 shadow-lg shadow-[#FFB7DD]/40 overflow-hidden cursor-pointer border border-white" onclick="copyText('1902619832', this, 'kbank', 'คัดลอกเลขบัญชีแล้ว')">
                         <svg class="absolute -right-6 -bottom-6 w-32 h-32 text-white opacity-30 transform -rotate-12 pointer-events-none" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
                         
@@ -206,7 +206,7 @@
                         </div>
                     </div>
 
-                    <!-- 2. บัตร TrueMoney (ใช้สีฟ้าตามสไตล์ภาพ Wallet) -->
+                    <!-- 2. บัตร TrueMoney -->
                     <div class="virtual-card relative bg-[#B3E5FC] rounded-[24px] p-5 shadow-lg shadow-[#81D4FA]/40 overflow-hidden cursor-pointer border border-white" onclick="copyText('0926132682', this, 'true', 'คัดลอกเลขบัญชีแล้ว')">
                         <svg class="absolute -left-6 -top-6 w-32 h-32 text-white opacity-30 transform rotate-12 pointer-events-none" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
 
@@ -246,8 +246,30 @@
                         </button>
                     </div>
 
-                    <!-- 4. กล่องเตือน +6 บาท Wallet และ เงื่อนไขลืมโน๊ตสลิป -->
-                    <div class="relative bg-[#FFCBE7]/60 rounded-[20px] p-3.5 border-2 border-dashed border-[#FFB7DD] shadow-sm z-10 overflow-hidden transform transition-transform hover:scale-[1.02] mt-1">
+                    <!-- 4. กล่องเตือนกรณีลืมโน๊ตสลิป (แยกออกมาใหม่) -->
+                    <div class="relative bg-[#B3E5FC]/60 rounded-[20px] p-3.5 border-2 border-dashed border-[#81D4FA] shadow-sm flex items-center justify-between gap-3 cursor-pointer hover:bg-[#B3E5FC]/80 transition-colors" onclick="copyText('1', this, 'forget-note', 'คัดลอกยอดโอนเพิ่ม 1 บาทแล้ว')">
+                        <div class="flex items-start gap-2.5">
+                            <div class="bg-[#1A1F8B] p-1.5 rounded-full text-white flex-shrink-0 mt-0.5 shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 text-[#81D4FA]">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <div class="text-[10px] font-bold bg-[#1A1F8B] text-white px-2 py-0.5 rounded-full inline-block mb-1">กรณีลืมโน๊ตสลิป</div>
+                                <div class="text-[11.5px] font-medium text-[#1A1F8B] leading-relaxed">
+                                    โอนเพิ่ม <span class="font-bold text-[#1A1F8B] underline decoration-[#81D4FA]">1 บาท</span> แล้วโน๊ตใหม่<br>
+                                    <span class="text-[10px] text-[#1A1F8B]/80 font-normal">(ชื่อต้องตรงกับสลิปแรกเท่านั้น)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="forget-note-btn bg-white text-[#1A1F8B] hover:bg-white/80 text-[11px] font-bold px-3 py-1.5 rounded-full flex items-center gap-1 shrink-0 border border-[#81D4FA] transition-colors pointer-events-none shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                            คัดลอก 1฿
+                        </button>
+                    </div>
+
+                    <!-- 5. กล่องเตือน +6 บาท Wallet -->
+                    <div class="relative bg-[#FFCBE7]/60 rounded-[20px] p-3.5 border-2 border-dashed border-[#FFB7DD] shadow-sm z-10 overflow-hidden transform transition-transform hover:scale-[1.02]">
                         <svg class="absolute -right-3 -bottom-3 w-14 h-14 text-[#FFB7DD]/60 transform -rotate-12 pointer-events-none" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
 
                         <div class="flex items-start gap-3 relative z-10">
@@ -257,17 +279,16 @@
                                 </svg>
                             </div>
                             <div class="text-[11.5px] text-[#1A1F8B] leading-relaxed text-left flex-1">
-                                <span class="inline-block bg-[#1A1F8B] text-white text-[9px] font-bold px-2 py-0.5 rounded-full mb-1.5 tracking-wider shadow-sm">
+                                <span class="inline-block bg-[#1A1F8B] text-white text-[9px] font-bold px-2 py-0.5 rounded-full mb-1 tracking-wider shadow-sm">
                                     สำคัญ
                                 </span><br>
                                 <span class="font-bold text-[#1A1F8B] text-[12.5px]">เฉพาะคนโอน wallet</span> บวกเพิ่มจากยอด
-                                <span class="bg-white px-1.5 py-0.5 rounded-md text-[#1A1F8B] font-bold border border-[#FFB7DD] whitespace-nowrap shadow-sm">6 บาท</span> นะครับ<br>
-                                <span class="text-[#1A1F8B] text-[10.5px] font-semibold mt-1 block leading-snug">⚠️ ลืมโน๊ตสลิปโอนเพิ่ม 1 บาท แล้วโน๊ตใหม่ (ชื่อต้องตรงกับสลิปแรกเท่านั้น)</span>
+                                <span class="bg-white px-1.5 py-0.5 rounded-md text-[#1A1F8B] font-bold border border-[#FFB7DD] whitespace-nowrap shadow-sm">6 บาท</span> นะครับ
                             </div>
                         </div>
                     </div>
 
-                    <!-- 5. กล่องเตือนโอนผิด -->
+                    <!-- 6. กล่องเตือนโอนผิด -->
                     <div class="bg-[#B3E5FC]/50 border border-[#81D4FA] rounded-2xl p-3 flex items-start gap-3 text-left shadow-sm">
                         <div class="bg-white p-1.5 rounded-full shadow-sm text-[#1A1F8B] flex-shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
@@ -283,7 +304,7 @@
                         </div>
                     </div>
 
-                    <!-- 6. กล่องเตือนแปะสลิป -->
+                    <!-- 7. กล่องเตือนแปะสลิป -->
                     <div class="bg-[#FFCBE7]/50 border border-[#FFB7DD] rounded-2xl p-3 flex items-start gap-3 text-left shadow-sm">
                         <div class="bg-white p-1.5 rounded-full shadow-sm text-[#1A1F8B] flex-shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
@@ -324,6 +345,7 @@
                 let buttonSelector = '.kbank-btn';
                 if (type === 'true') buttonSelector = '.true-btn';
                 if (type === 'note') buttonSelector = '.note-btn';
+                if (type === 'forget-note') buttonSelector = '.forget-note-btn';
 
                 const buttonElement = containerElement.querySelector(buttonSelector);
                 const originalHtml = buttonElement.innerHTML;
@@ -333,7 +355,7 @@
                     สำเร็จ
                 `;
                 
-                if (type === 'note') {
+                if (type === 'note' || type === 'forget-note') {
                     buttonElement.classList.replace('bg-white', 'bg-[#81D4FA]');
                 } else {
                     buttonElement.classList.replace('bg-white', 'bg-white/50');
@@ -341,7 +363,7 @@
                 
                 setTimeout(() => {
                     buttonElement.innerHTML = originalHtml;
-                    if (type === 'note') {
+                    if (type === 'note' || type === 'forget-note') {
                         buttonElement.classList.replace('bg-[#81D4FA]', 'bg-white');
                     } else {
                         buttonElement.classList.replace('bg-white/50', 'bg-white');
